@@ -133,9 +133,9 @@ voronoi_feature_items = (
 )
 
 edge_detect_methods = (
-    ("HYBRID", "Hybrid", "Use Inverted AO method for viewport preview, but the baked version will use Bevel method"),
-    ("INVERTED_AO", "Inverted AO", "Inverted AO method (less precise, but viewport and baked version are more consistent)"),
-    ("BEVEL", "Bevel (Cycles Only)", "Bevel method (more precise but only works with Cycles renderer)"), 
+    ("HYBRID", "Hybrid", "Inverted AO method for EEVEE, Bevel method for baking and Cycles renders"),
+    ("INVERTED_AO", "Inverted AO", "Inverted AO method (less accurate but more consistent since it uses the same method for both EEVEE and Cycles)"),
+    ("BEVEL", "Bevel (Cycles Only)", "Bevel method (more accurate but requires baking to view results in EEVEE)"),
 )
 
 def entity_input_items(self, context):
