@@ -685,6 +685,10 @@ def draw_edge_detect_props(layer, source, layout):
     draw_input_prop(row, layer, 'edge_detect_radius')
 
     row = col.row()
+    row.label(text='Method:')
+    row.prop(layer, 'edge_detect_method', text='')
+
+    row = col.row()
     row.label(text='Use Previous Normal:')
     row.prop(layer, 'hemi_use_prev_normal', text='')
 
@@ -1330,7 +1334,7 @@ def draw_root_channels_ui(context, layout, node):
                 else:
                     brow.label(text='', icon_value=lib.get_icon('texture'))
 
-                # Put parallax settings to experimental since it's very imprescise
+                # Put parallax settings to experimental since it's very imprecise
                 if ypup.show_experimental or channel.enable_parallax:
                     brow = bcol.row(align=True)
                     brow.active = yp.use_baked and not channel.enable_subdiv_setup and not yp.enable_baked_outside

@@ -34,8 +34,17 @@ def setup_object_idx_source(mask, source, object_index=None):
 
 def setup_edge_detect_source(entity, source, edge_detect_radius=None):
     if entity.hemi_use_prev_normal:
-        lib_name = lib.EDGE_DETECT_CUSTOM_NORMAL
-    else: lib_name = lib.EDGE_DETECT
+        if entity.edge_detect_method == 'INVERTED_AO':
+            lib_name = lib.EDGE_DETECT_CUSTOM_NORMAL_INVERTED_AO
+        elif entity.edge_detect_method == 'BEVEL':
+            lib_name = lib.EDGE_DETECT_CUSTOM_NORMAL_BEVEL
+        else: lib_name = lib.EDGE_DETECT_CUSTOM_NORMAL
+    else: 
+        if entity.edge_detect_method == 'INVERTED_AO':
+            lib_name = lib.EDGE_DETECT_INVERTED_AO
+        elif entity.edge_detect_method == 'BEVEL':
+            lib_name = lib.EDGE_DETECT_BEVEL
+        else: lib_name = lib.EDGE_DETECT
 
     ori_lib = source.node_tree
     if not ori_lib or ori_lib.name != lib_name:
@@ -2563,6 +2572,14 @@ class YLayerMask(bpy.types.PropertyGroup):
         description = 'Edge detect radius',
         default=0.05, min=0.0, max=10.0, precision=3,
         update = update_mask_edge_detect_radius
+    )
+
+    edge_detect_method : EnumProperty(
+        name = 'Edge Detect Method',
+        description = 'Edge detection method',
+        items = edge_detect_methods,
+        default = 'HYBRID',
+        update = update_mask_hemi_use_prev_normal
     )
 
     # For AO

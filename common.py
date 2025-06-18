@@ -132,6 +132,12 @@ voronoi_feature_items = (
     ("N_SPHERE_RADIUS", "N-Sphere Radius", "Compute and return the radius of the n-sphere inscribed in the Voronoi cells. In other words, it is half the distance between the closest feature point and the feature point closest to it.")
 )
 
+edge_detect_methods = (
+    ("HYBRID", "Hybrid", "Use Inverted AO method for viewport preview, but the baked version will use Bevel method"),
+    ("INVERTED_AO", "Inverted AO", "Inverted AO method (less precise, but viewport and baked version are more consistent)"),
+    ("BEVEL", "Bevel (Cycles Only)", "Bevel method (more precise but only works with Cycles renderer)"), 
+)
+
 def entity_input_items(self, context):
     yp = self.id_data.yp
     entity = self

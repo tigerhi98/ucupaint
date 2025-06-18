@@ -7046,6 +7046,14 @@ class YLayer(bpy.types.PropertyGroup):
         update = update_layer_edge_detect_radius
     )
 
+    edge_detect_method : EnumProperty(
+        name = 'Edge Detect Method',
+        description = 'Edge detection method',
+        items = edge_detect_methods,
+        default = 'HYBRID',
+        update = update_hemi_use_prev_normal
+    )
+
     # For AO
     ao_distance : FloatProperty(
         name = 'Ambient Occlusion Distance',
